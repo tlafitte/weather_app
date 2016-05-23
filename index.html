@@ -8,7 +8,7 @@
     <title>Local Weather</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,11 +19,15 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Current Temperature:</h1>
-    <p id="weather">Current temp goes here</p>
-
+    <div class="col-sm-4 col-sm-offset-4" align="center">  
+       <h1>Your current local weather:</h1>
+       <p id="location">Location goes here</p>
+       <p id="temp">Current temp goes here</p>
+       <p id="weather">Current weather goes here</p>
+       <img id="icon" alt="Current weather icon">
+    </div>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
-    <script src="script.js"></script>
+   <script src="script.js"></script>
     
   </body>
 </html>
