@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Local Weather</title>
 
     <!-- Latest compiled and minified CSS -->
@@ -19,15 +18,15 @@
     <![endif]-->
   </head>
   <body>
-    <div class="col-sm-4 col-sm-offset-4" align="center">  
-       <h1>Your current local weather:</h1>
-       <p id="location">Location goes here</p>
-       <p id="temp">Current temp goes here</p>
-       <p id="weather">Current weather goes here</p>
-       <img id="icon" alt="Current weather icon">
-    </div>
+    <div class="container" align="center">  
+      <div id="location"></div>
+      <div id="weather"></div>
+      <img id="icon">
+      <div id="temp"></div>
+      <button type="button" class="btn-small btn-primary">Units: °F/°C</button>
+    </div> <!--container-->
+
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
-   <script src="script.js"></script>
-    
+    <script src="script.js"></script>
   </body>
 </html>

@@ -1,10 +1,32 @@
 body { 
-   background-color: black;
+   background-image: url("http://source.unsplash.com/featured/");
+   background-repeat: no-repeat;
+   background-size: cover;
    color: white;
+   font-weight: bold;
 }
 
-h1 {
-	font-size: 3em;
-	margin-bottom: 30px;
+.container {
+     opacity: 0.9;
+     background-color: gray;
+     width: 200px;
+     border: 1px solid black;
+     border-radius: 5px;
+     float: left;
+}
+
+#location {
+     font-size: 3em;
+     text-shadow: 1px 1px 2px black;
+}
+
+#temp {
+     font-size: 1.8em;
+     text-shadow: 1px 1px 2px black;
+}
+
+#weather {
+     font-size: 1.8em;
+     text-shadow: 1px 1px 2px black;
 }
 
