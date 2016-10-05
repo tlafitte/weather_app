@@ -1,32 +1,31 @@
 body { 
-   background-image: url("http://source.unsplash.com/featured/");
-   background-repeat: no-repeat;
-   background-size: cover;
-   color: white;
-   font-weight: bold;
+  /*background-image: url("images/cloudy.jpg");*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
 }
 
 .container {
-     opacity: 0.9;
-     background-color: gray;
-     width: 200px;
-     border: 1px solid black;
-     border-radius: 5px;
-     float: left;
+  opacity: 0.9;
+  background-color: gray;
+  width: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+  float: left;
 }
 
 #location {
-     font-size: 3em;
-     text-shadow: 1px 1px 2px black;
+  font-size: 3em;
+  text-shadow: 1px 1px 2px black;
 }
 
 #temp {
-     font-size: 1.8em;
-     text-shadow: 1px 1px 2px black;
+  font-size: 1.8em;
+  text-shadow: 1px 1px 2px black;
 }
 
 #weather {
-     font-size: 1.8em;
-     text-shadow: 1px 1px 2px black;
+  font-size: 1.8em;
+  text-shadow: 1px 1px 2px black;
 }
-

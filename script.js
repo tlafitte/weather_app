@@ -1,47 +1,119 @@
+  $(document).ready(function(){
+    getLocation();
 
-$(document).ready(function () { 
+  // Button swaps units between C and F when clicked
+  $('#button').click(function(){
+    var currTemp = $('#temp').html();
+    var tempNum = parseInt(currTemp);
+    var tempUnits;
+    if (currTemp.indexOf("F") >= 0){
+      tempUnits = "C";
+      tempNum = Math.round((tempNum -32) * (5/9));
+    }
+    else if (currTemp.indexOf("C") >= 0){
+      tempUnits = "F";
+      tempNum = Math.round((tempNum * 1.8) + 32);
+    }
+    $('#temp').html(tempNum + " °" + tempUnits); // Reset #temp with converted data
+  }); // End button
 
-	var units = "F";
-	var pos = { lat: 0, lon: 0 };
-   navigator.geolocation.getCurrentPosition(function(position){
-    pos.lat = position.coords.latitude;
-    pos.lon = position.coords.longitude;
-    api_call = "http://api.openweathermap.org/data/2.5/weather?lat=" + pos.lat + "&lon=" + pos.lon +"&appid=8a755c3903379d7e690ec63d41cb5528&units=imperial";
-   
-   // jQuery getJSON method to make the api call 
-   // Returned data is inserted into html
-  $.getJSON(api_call,
-      function(data) {
-      var temp = data.main.temp;
-      $('#location').html(data.name);
-      $('#temp').html(temp + " °" + units);
-      $('#weather').html(data.weather[0].main); 
-      $('#icon').attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+  })
 
-/*
-      if(data.weather[0].id == /8[0-9][0-9]/)
-        $('#body').css("background-image", 'url("http://source.unsplash.com/featured/?snow")');
-      });
-*/
 
-   // Temperature conversion between F and C on click
-   $('#temp').click(function(){
-   	
-      if(units == "F"){
-        units = "C";
-        temp = Math.round((temp -32) * (5/9));
-        $('#temp').html(temp + " °" + units);
-      }
-      else if(units == "C"){
-        units = "F";
-        temp = Math.round((temp * 1.8) + 32);
-        $('#temp').html(temp + " °" + units);
-      }
-      }); // temperature conversion 
-    }); // API call
-   }); // geolocation
+/************************************
+*        function getLocation()     *
+************************************/
+
+
+function getLocation() {
+    $.ajax({
+        url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBJCvxEmi2PsLS9HTTnwkw07UyTsLO-WB0",
+        type: "POST",
+        success: function (response) {
+            getLocalWeather(response);
+        },
+        error: function () {
+            alert("Error: Unable to retrieve data from remote server");
+        }
+    });
+} // End function getLocation
+
+
+/************************************
+*function getLocalWeather (response)*
+************************************/
+
+
+function getLocalWeather(response) {
+  var apiURL = "http://api.openweathermap.org/data/2.5/weather?";
+  var lat = "lat=" + response.location.lat + "&";
+  var lng = "lon=" + response.location.lng + "&";
+  var appID = "appid=8a755c3903379d7e690ec63d41cb5528&units=imperial";
+  var fullURL = apiURL + lat + lng + appID;
+
+
+  $.ajax({
+    url: fullURL,
+    type: "POST",
+    dataType: "jsonp",
+    success: function(response) {
+         updatePage(response);
+    },
+    error: function (){
+         alert("Error: Unable to retrieve data from remote server");
+    }
+  });
+} // End function getLocalWeather
+
+
+/************************************
+* function updatePage (weatherData) *
+************************************/
+
+function updatePage (weatherData) {
+
+  var userCity = weatherData.name;
+  var currentTemp = Math.round(weatherData.main.temp) + " °F";
+  var currentWeather = weatherData.weather[0].main;
+
+  // Update elements with current weatherData
+  $('#location').html(userCity);
+  $('#temp').html(currentTemp);
+  $('#weather').html(currentWeather);
+
+  // Retrieve icon for current weatherData and update element
+  var apiURL = "http://openweathermap.org/img/w/";
+  var iconID = weatherData.weather[0].icon;
+  var fileType = ".png";
+  var fullURL = apiURL + iconID + fileType;
+  $('#icon').attr("src", fullURL);
   
+  // Update background image to match current weatherData
+  var bgCondition;
 
-});
+  // Use the weather icon ID numbers to match general weather condition categories to bg images
+  var weatherID = parseInt(iconID); // strip everything but the number value from iconID
+  if (weatherID == 1)
+    bgCondition = "clear";
+  else if (weatherID >= 2 && weatherID<= 4)
+    bgCondition = "cloudy";
+  else if (weatherID >= 9 && weatherID<= 10)
+    bgCondition = "rain";
+  else if (weatherID == 13)
+    bgCondition = "snow";
+  else if (weatherID == 50)
+    bgCondition = "fog";
+  else if (weatherID == 11)
+    bgCondition = "storm";
 
- 
+  // Update the bg with the correct image path
+  $("body").css("background-image","url('images/" + bgCondition + ".jpg')");
+}; // End function updatePage
+
+
+
+
+
+
+
+

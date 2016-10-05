@@ -14,7 +14,6 @@ the user's local area.
 * Background images of weather conditions are displayed based on current local weather (i.e. a "rainy" background image is displayed if it is currently raining locally, etc.)
 
 ##Tools
-********
 
 * HTML
 * CSS
