@@ -1,5 +1,4 @@
 body { 
-  /*background-image: url("images/cloudy.jpg");*/
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
@@ -7,12 +6,9 @@ body {
 }
 
 .container {
-  opacity: 0.9;
-  background-color: gray;
-  width: 200px;
+  background-color: blue;
   border: 1px solid black;
   border-radius: 5px;
-  float: left;
 }
 
 #location {
